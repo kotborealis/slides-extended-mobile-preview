@@ -22,21 +22,6 @@ jobs:
       - run: npm ci
       - run: npm run check
 
-      - name: Package plugin
-        run: |
-          rm -rf release
-          mkdir -p release
-          cp manifest.json main.js styles.css release/
-          cp -R assets release/assets
-          cd release
-          zip -r ../slides-extended-mobile-preview.zip .
-
-      - name: Upload release artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: slides-extended-mobile-preview
-          path: slides-extended-mobile-preview.zip
-
       - name: Create GitHub release
         if: startsWith(github.ref, 'refs/tags/')
         env:
@@ -46,24 +31,6 @@ jobs:
           gh release create "$TAG_NAME" \
             --title "$TAG_NAME" \
             --generate-notes \
-            "slides-extended-mobile-preview.zip" \
             "./manifest.json" \
             "./main.js" \
-            "./styles.css" \
-            "./assets/reveal/reveal.js" \
-            "./assets/reveal/reveal.css" \
-            "./assets/reveal/theme/beige.css" \
-            "./assets/reveal/theme/black.css" \
-            "./assets/reveal/theme/black-contrast.css" \
-            "./assets/reveal/theme/blood.css" \
-            "./assets/reveal/theme/dracula.css" \
-            "./assets/reveal/theme/league.css" \
-            "./assets/reveal/theme/moon.css" \
-            "./assets/reveal/theme/night.css" \
-            "./assets/reveal/theme/serif.css" \
-            "./assets/reveal/theme/simple.css" \
-            "./assets/reveal/theme/sky.css" \
-            "./assets/reveal/theme/solarized.css" \
-            "./assets/reveal/theme/white.css" \
-            "./assets/reveal/theme/white-contrast.css" \
-            "./assets/reveal/plugin/notes/notes.js"
+            "./styles.css"

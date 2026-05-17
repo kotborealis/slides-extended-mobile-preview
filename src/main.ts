@@ -7,9 +7,12 @@ import {
   splitSlides,
 } from "./deck";
 
+declare const REVEAL_CSS: string;
+declare const REVEAL_JS: string;
+declare const NOTES_JS: string;
+declare const THEMES: Record<string, string>;
+
 const VIEW_TYPE = "slides-extended-mobile-preview";
-const PLUGIN_ID = "slides-extended-mobile-preview";
-const REVEAL_DIST = `.obsidian/plugins/${PLUGIN_ID}/assets/reveal`;
 
 interface SlideMessage {
   index: number;
@@ -116,12 +119,10 @@ class MobileSlidesView extends ItemView {
     }
 
     const sections = await this.renderSections(groups, deck.notesSeparator);
-    const revealCss = this.resource(`${REVEAL_DIST}/reveal.css`);
-    const themeCss = this.resource(`${REVEAL_DIST}/theme/${deck.theme}.css`);
-    const revealJs = this.resource(`${REVEAL_DIST}/reveal.js`);
-    const notesJs = this.resource(`${REVEAL_DIST}/plugin/notes/notes.js`);
+    const theme = deck.theme || "black";
+    const themeCss = THEMES[theme] || THEMES.black;
 
-    this.iframeEl.srcdoc = buildRevealDocument({ revealCss, themeCss, revealJs, notesJs, sections });
+    this.iframeEl.srcdoc = buildRevealDocument({ themeCss, sections });
     this.counterEl.setText("Loading");
     this.prevButton.disabled = false;
     this.nextButton.disabled = false;
@@ -293,26 +294,20 @@ export default class MobileSlidesPlugin extends Plugin {
 }
 
 function buildRevealDocument({
-  revealCss,
-  revealJs,
-  notesJs,
   themeCss,
   sections,
 }: {
-  notesJs: string;
-  revealCss: string;
-  revealJs: string;
-  sections: string;
   themeCss: string;
+  sections: string;
 }): string {
   return `<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="${revealCss}">
-  <link rel="stylesheet" href="${themeCss}" id="theme">
   <style>
+${REVEAL_CSS}
+${themeCss}
     html, body { margin: 0; height: 100%; background: #111; }
     .reveal { height: 100%; }
     .reveal .slides { text-align: center; }
@@ -329,11 +324,15 @@ function buildRevealDocument({
 <body>
   <div class="reveal">
     <div class="slides">
-${sections}
+ ${sections}
     </div>
   </div>
-  <script src="${revealJs}"></script>
-  <script src="${notesJs}"></script>
+  <script>
+${REVEAL_JS}
+  </script>
+  <script>
+${NOTES_JS}
+  </script>
   <script>
     const deck = new Reveal({
       controls: true,

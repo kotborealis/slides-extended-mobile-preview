@@ -31,7 +31,7 @@ function copyRevealAssets() {
   copyFileSync("node_modules/reveal.js/dist/reveal.js", "assets/reveal/reveal.js");
   copyFileSync("node_modules/reveal.js/dist/reveal.css", "assets/reveal/reveal.css");
   cpSync("node_modules/reveal.js/dist/theme", "assets/reveal/theme", { recursive: true });
-  copyFileSync("node_modules/reveal.js/plugin/notes/plugin.js", "assets/reveal/plugin/notes/notes.js");
+  copyFileSync("node_modules/reveal.js/dist/plugin/notes.js", "assets/reveal/plugin/notes/notes.js");
 }
 
 copyRevealAssets();

@@ -3,8 +3,8 @@
   "name": "Slides Extended Mobile Preview",
   "version": "0.6.9",
   "minAppVersion": "1.5.0",
-  "description": "Mobile-friendly slide preview for Markdown presentations using Obsidian rendering.",
+  "description": "Mobile-friendly slide preview for Markdown presentations using Reveal.js.",
   "author": "kotborealis",
-  "authorUrl": "https://github.com/kotborealis/slides-extended-mobile-preview",
+  "authorUrl": "https://github.com/kotborealis",
   "isDesktopOnly": false
 }

@@ -29,9 +29,10 @@ const buildOptions = {
   external: ["obsidian", "electron", "codemirror", "@codemirror/language", "@codemirror/state", "@codemirror/view", "moment", ...builtins],
   format: "cjs",
   logLevel: "info",
+  minify: true,
   outfile: "main.js",
   platform: "node",
-  sourcemap: "inline",
+  sourcemap: false,
   target: "es2022",
   define: {
     "REVEAL_CSS": JSON.stringify(revealCss),

@@ -49,4 +49,21 @@ jobs:
             "slides-extended-mobile-preview.zip" \
             "./manifest.json" \
             "./main.js" \
-            "./styles.css"
+            "./styles.css" \
+            "./assets/reveal/reveal.js" \
+            "./assets/reveal/reveal.css" \
+            "./assets/reveal/theme/beige.css" \
+            "./assets/reveal/theme/black.css" \
+            "./assets/reveal/theme/black-contrast.css" \
+            "./assets/reveal/theme/blood.css" \
+            "./assets/reveal/theme/dracula.css" \
+            "./assets/reveal/theme/league.css" \
+            "./assets/reveal/theme/moon.css" \
+            "./assets/reveal/theme/night.css" \
+            "./assets/reveal/theme/serif.css" \
+            "./assets/reveal/theme/simple.css" \
+            "./assets/reveal/theme/sky.css" \
+            "./assets/reveal/theme/solarized.css" \
+            "./assets/reveal/theme/white.css" \
+            "./assets/reveal/theme/white-contrast.css" \
+            "./assets/reveal/plugin/notes/notes.js"

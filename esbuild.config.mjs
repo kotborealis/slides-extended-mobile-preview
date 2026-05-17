@@ -1,6 +1,6 @@
 import builtins from "builtin-modules";
 import esbuild from "esbuild";
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import process from "node:process";
 
 const watch = process.argv.includes("--watch");

@@ -25,11 +25,11 @@ jobs:
       - name: Package plugin
         run: |
           rm -rf release
-          mkdir -p release/slides-extended-mobile-preview
-          cp manifest.json main.js styles.css release/slides-extended-mobile-preview/
-          cp -R assets release/slides-extended-mobile-preview/assets
+          mkdir -p release
+          cp manifest.json main.js styles.css release/
+          cp -R assets release/assets
           cd release
-          zip -r slides-extended-mobile-preview.zip slides-extended-mobile-preview
+          zip -r ../slides-extended-mobile-preview.zip .
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v7
@@ -39,7 +39,13 @@ jobs:
 
       - name: Create GitHub release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v3
-        with:
-          files: release/slides-extended-mobile-preview.zip
-          generate_release_notes: true
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          gh release create "$TAG_NAME" \
+            --title "$TAG_NAME" \
+            --generate-notes \
+            "slides-extended-mobile-preview.zip" \
+            "./manifest.json" \
+            "./main.js" \
+            "./styles.css" \
+            "./assets/**/*"

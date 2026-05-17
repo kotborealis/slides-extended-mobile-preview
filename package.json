@@ -1,6 +1,6 @@
 {
   "name": "slides-extended-mobile-preview",
-  "version": "0.6.7",
+  "version": "0.6.9",
   "description": "Standalone Reveal.js preview for Markdown slide decks in Obsidian Mobile.",
   "type": "module",
   "main": "main.js",

@@ -23,13 +23,13 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^25.8.0",
+    "@types/node": "^25.9.1",
     "builtin-modules": "^5.0.0",
     "esbuild": "^0.28.0",
     "eslint": "^10.4.0",
     "obsidian": "^1.8.7",
     "reveal.js": "^6.0.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.48.0"
+    "typescript-eslint": "^8.59.4"
   }
 }
